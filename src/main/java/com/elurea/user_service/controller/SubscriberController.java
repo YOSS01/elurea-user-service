@@ -1,13 +1,13 @@
 package com.elurea.user_service.controller;
 
 import com.elurea.user_service.dto.SubscribeRequest;
-import com.elurea.user_service.dto.UnsubscribeRequest;
 import com.elurea.user_service.entity.Subscriber;
 import com.elurea.user_service.service.SubscriberService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/subscribers")
@@ -29,7 +29,7 @@ public class SubscriberController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Subscriber> unsubscribe(@RequestBody UnsubscribeRequest request) {
-        return ResponseEntity.ok(subscriberService.unsubscribe(request));
+    public ResponseEntity<Subscriber> unsubscribe(@PathVariable UUID id) {
+        return ResponseEntity.ok(subscriberService.unsubscribe(id));
     }
 }

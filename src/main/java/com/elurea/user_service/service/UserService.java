@@ -1,6 +1,5 @@
 package com.elurea.user_service.service;
 
-import com.elurea.user_service.dto.DeleteUserRequest;
 import com.elurea.user_service.dto.LoginRequest;
 import com.elurea.user_service.dto.RegisterRequest;
 import com.elurea.user_service.dto.SaveUserRequest;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -93,8 +91,8 @@ public class UserService {
     }
 
     // Soft Delete User
-    public void delete(DeleteUserRequest request) {
-        User user = userRepository.findById(request.id)
+    public void delete(UUID id) {
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         user.setDeletedAt(LocalDateTime.now());

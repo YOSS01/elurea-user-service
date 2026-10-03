@@ -1,14 +1,13 @@
 package com.elurea.user_service.service;
 
 import com.elurea.user_service.dto.SubscribeRequest;
-import com.elurea.user_service.dto.UnsubscribeRequest;
 import com.elurea.user_service.entity.Subscriber;
-import com.elurea.user_service.entity.User;
 import com.elurea.user_service.repository.SubscriberRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SubscriberService {
@@ -46,8 +45,8 @@ public class SubscriberService {
     }
 
     // Unsubscribe from the newsletter
-    public Subscriber unsubscribe(UnsubscribeRequest request) {
-        Subscriber subscriber = subscriberRepository.findById(request.id).orElseThrow(() -> new RuntimeException("Subscriber not found"));
+    public Subscriber unsubscribe(UUID id) {
+        Subscriber subscriber = subscriberRepository.findById(id).orElseThrow(() -> new RuntimeException("Subscriber not found"));
 
         subscriber.setActive(false);
         subscriber.setUnSubscribedAt(LocalDateTime.now());

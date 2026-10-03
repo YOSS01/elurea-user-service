@@ -1,11 +1,8 @@
 package com.elurea.user_service.controller;
 
-import com.elurea.user_service.dto.DeleteUserRequest;
-import com.elurea.user_service.dto.RegisterRequest;
 import com.elurea.user_service.dto.SaveUserRequest;
 import com.elurea.user_service.entity.User;
 import com.elurea.user_service.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,8 +39,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> softDelete(@RequestBody DeleteUserRequest req) {
-        userService.delete(req);
+    public ResponseEntity<?> softDelete(@PathVariable UUID id) {
+        userService.delete(id);
         return ResponseEntity.ok("User deleted");
     }
 }
